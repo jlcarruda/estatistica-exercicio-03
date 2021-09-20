@@ -15,19 +15,21 @@ dataset = {  # classe: (Freq Abs, Freq. Rel.)
     9: (3, 0.15)
 }
 
-
-def variance(d):
-    freqValues = list(map(lambda x: x[0], d.values()))
-    nObservations = len(freqValues)
-    mediaArit = reduce(lambda a, b: a+b, freqValues) / nObservations
-    elements = list(map(lambda x: (x - mediaArit) ** 2, freqValues))
-    somatory = reduce(lambda a, b: a+b, elements)
-    return somatory / nObservations
-
-
-table = []
-
 freqAbsAcc = 20
+
+
+def variance(d, media):
+    equations = list(
+        map(lambda x: ((x ** 2) * d[x][0]) / freqAbsAcc, d.keys()))
+    somatory = reduce(lambda a, b: a + b, equations)
+    return somatory - (media ** 2)
+#     freqValues = list(map(lambda x: x[0], d.values()))
+#     nObservations = len(freqValues)
+#     mediaArit = reduce(lambda a, b: a+b, freqValues) / nObservations
+#     elements = list(map(lambda x: (x - mediaArit) ** 2, freqValues))
+#     somatory = reduce(lambda a, b: a+b, elements)
+#     return somatory / nObservations
+
 
 classSpacing = 12
 frequencySpacing = 12
@@ -57,7 +59,7 @@ modaFrequencia = modeResult.count[0]
 
 print(f'Moda = {moda}, aparecendo {modaFrequencia} vezes')
 
-variancia = variance(dataset)
+variancia = variance(dataset, media)
 
 print(f'Variancia = {variancia}')
 

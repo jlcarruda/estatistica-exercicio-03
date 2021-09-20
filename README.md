@@ -29,15 +29,17 @@ Para executar o código, se faz necessário apenas a instalação das dependenci
 
 ## Calcule média, mediana, moda, variância, desvio padrão e coeficiente de variação.
 ***Os calculos desta questão foram feitos via Python***
+*Valores em Negrito são os resultados da correção do cálculo*
+*Valores tracejados indicam a resposta errada*
 
 | Variavel Calculada| Valor |
 |:--|---:|
 Media | 6.45
 Mediana | 4.0
 Moda | 8, aparecendo 5 vezes
-Variancia | 2
-Desvio Padrão | 1.4142135623730951
-Coeficiente de Var. | 0.3536
+Variancia | (~~2~~) **4.1475**
+Desvio Padrão | (~~1.414~~)  **2.03654118544163**
+Coeficiente de Var. | (~~0.3536~~) **0.3157428194483147**
 ----------
 
 ## [Questão 2](./Q2.py)
