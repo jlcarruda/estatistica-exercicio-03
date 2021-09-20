@@ -1,6 +1,7 @@
 from numpy import var, mean
 from math import sqrt
 from scipy.stats import mode
+from functools import reduce
 
 print('Questão 1')
 print('Considere uma tabela de frequência para variável contínua. Calcule média, mediana, moda, variância, desvio padrão e coeficiente de variação.')
@@ -53,35 +54,44 @@ def intervalMiddlePoint(classe):
     return (v1 + v2) / 2
 
 
-# def applyIntervalMean():
-
-
 printTable(dataset)
 
 totalSum = 0
-spreadedValues = []
+middlePointValues = []
 
 for i in dataset:
     times = i[2]
     middlePoint = intervalMiddlePoint(i)
     totalSum += middlePoint * times
-    spreadedValues.append((times, middlePoint))
+    middlePointValues.append((times, middlePoint))
 
 print()
 media = round(totalSum / freqAbsAcc, 2)
 print(f'Media = {media}')
 
+# ============= MEDIANA =============
+# Pegaremos o indice médio do dataset,depois de feito o calculo dos middle points de cada intervalo
+mediana = dataset[round(len(middlePointValues)/2)][1]
+print(f'Mediana = {mediana}')
+
+# ============= MODA ===============
 # Olhando para o dataset, vemos que a classe modal é a de indice 2
 indiceClasseModal = 2
 classeModal = dataset[indiceClasseModal]
-
-# TODO: MEDIANA
-
 print(
     f'Moda, aplicando CZUBER = {applyCzuber(classeModal, indiceClasseModal)}')
-# mediana = mean(list(map(lambda x: x[2], dataset)))
-# print(f'Mediana = {mediana}')
 
-# TODO: VARIANCIA
+# ========= VARIANCIA ==============
+middlePointValuesWithFrequency = list(
+    map(lambda x: (x[0] * x[1]), middlePointValues))
+middlePointValuesWithFrequencySquared = list(
+    map(lambda x: (x[0] * (x[1] ** 2)), middlePointValues))
+sumSquared = reduce(lambda a, b: a+b, middlePointValuesWithFrequencySquared)
+sumMiddlePoint = reduce(lambda a, b: a+b, middlePointValuesWithFrequency)
+
+variancia = sqrt((sumSquared / freqAbsAcc) -
+                 (sumMiddlePoint / freqAbsAcc) ** 2)
+print(f'Variancia = {variancia}')
+
 # TODO: DESVIO PADRAO
 # TODO: COEFICIENTE DE VARIAÇÃO
