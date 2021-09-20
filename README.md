@@ -32,12 +32,12 @@ Para executar o código, se faz necessário apenas a instalação das dependenci
 
 | Variavel Calculada| Valor |
 |:--|---:|
-Media | 4
-Mediana | 4
+Media | 6.45
+Mediana | 4.0
 Moda | 8, aparecendo 5 vezes
 Variancia | 2
 Desvio Padrão | 1.4142135623730951
-Coeficiente de Var. | 35,36%
+Coeficiente de Var. | 0.3536
 ----------
 
 ## [Questão 2](./Q2.py)
@@ -54,9 +54,9 @@ Coeficiente de Var. | 35,36%
 
 | Variavel Calculada| Valor |
 |:--|---:|
-Media | 4
-Mediana | 4
-Moda | 8, aparecendo 5 vezes
-Variancia | 2
-Desvio Padrão | 1.4142135623730951
-Coeficiente de Var. | 35,36%
+Media | 23.87
+Mediana | 25.4
+Moda | 23.96
+Variancia | 1.9113084523436352
+Desvio Padrão | 1.3825007965074143
+Coeficiente de Var. | 0.05791792193160512

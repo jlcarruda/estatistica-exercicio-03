@@ -1,6 +1,5 @@
-from numpy import var, mean
+from numpy import mean
 from math import sqrt
-from scipy.stats import mode
 from functools import reduce
 
 print('Questão 1')
@@ -41,11 +40,11 @@ def printTable(dataset):
 
 
 def applyCzuber(classeModal, i):
-    l = classeModal[0]
-    d1 = classeModal[2] - dataset[i - 1][2]
-    d2 = classeModal[2] - dataset[i + 1][2]
-    h = classeModal[1] - l
-    return l + (d1 / (d1 + d2)) * h
+    l = classeModal[0]  # Limite inferior
+    d1 = classeModal[2] - dataset[i - 1][2]  # Freq. Modal - Freq. anterior
+    d2 = classeModal[2] - dataset[i + 1][2]  # Freq. Modal - Freq. Posterior
+    h = classeModal[1] - l  # Amplitude
+    return l + (d1 / (d1 + d2)) * h  # CZUBEK
 
 
 def intervalMiddlePoint(classe):
@@ -93,5 +92,8 @@ variancia = sqrt((sumSquared / freqAbsAcc) -
                  (sumMiddlePoint / freqAbsAcc) ** 2)
 print(f'Variancia = {variancia}')
 
-# TODO: DESVIO PADRAO
-# TODO: COEFICIENTE DE VARIAÇÃO
+# ========= DESVIO PADRÃO ===========
+print(f'Desvio Padrão = {sqrt(variancia)}')
+
+# ========= Coeficiente de Variação =========
+print(f'Coeficiente de Variação = {sqrt(variancia) / media}')

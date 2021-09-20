@@ -1,6 +1,7 @@
 from numpy import var, mean
 from math import sqrt
 from scipy.stats import mode
+from functools import reduce
 
 print('Questão 1')
 print('Considere uma tabela de frequência para variável discreta. Calcule média, averagfea, moda, variância, desvio padrão e coeficiente de variação.')
@@ -14,14 +15,27 @@ dataset = {  # classe: (Freq Abs, Freq. Rel.)
     9: (3, 0.15)
 }
 
+
+def variance(d):
+    freqValues = list(map(lambda x: x[0], d.values()))
+    nObservations = len(freqValues)
+    mediaArit = reduce(lambda a, b: a+b, freqValues) / nObservations
+    elements = list(map(lambda x: (x - mediaArit) ** 2, freqValues))
+    somatory = reduce(lambda a, b: a+b, elements)
+    return somatory / nObservations
+
+
 table = []
 
-total = 20
+freqAbsAcc = 20
 
 classSpacing = 12
 frequencySpacing = 12
 
-media = 20 / len(dataset)
+freqTimes = list(map(lambda x: x * dataset[x][0], dataset.keys()))
+totalSum = reduce(lambda a, b: a+b, freqTimes)
+
+media = round(totalSum / freqAbsAcc, 2)
 print(f'Media = {media}')
 
 values = list(map(lambda x: x[0], list(dataset.values())))
@@ -43,10 +57,12 @@ modaFrequencia = modeResult.count[0]
 
 print(f'Moda = {moda}, aparecendo {modaFrequencia} vezes')
 
-print(f'Variancia = {var(values)}')
+variancia = variance(dataset)
 
-desvioPad = sqrt(var(values))
+print(f'Variancia = {variancia}')
+
+desvioPad = sqrt(variancia)
 
 print(f'Desvio Padrão = {desvioPad}')
 
-print(f'Coeficiente de Variação = {round((desvioPad / media) * 100, 2)}%')
+print(f'Coeficiente de Variação = {desvioPad / media}')
